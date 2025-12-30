@@ -1,0 +1,10 @@
+{
+  "name": "agent-governance-verifier",
+  "version": "1.0.0",
+  "description": "Offline verifier for the Agent Governance Evidence Standard (AGES) v1",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "ages-verify": "./verify-evidence.cjs"
+  }
+}
