@@ -40,6 +40,26 @@ function main() {
     if (step.schema_version !== "ages.v1") fail();
     if (step.step_index !== i) fail();
 
+    // GENESIS rules
+if (i === 0) {
+  if (step.kind !== "GENESIS") fail();
+  if (step.chain.genesis !== true) fail();
+  if (step.chain.prev_step_hash !== null) fail();
+} else {
+  if (step.kind === "GENESIS") fail();
+}
+
+// Fail-closed enforcement
+if (
+  step.policy &&
+  step.policy.mode === "enforcing" &&
+  step.decision &&
+  step.decision.fail_closed !== true
+) {
+  fail();
+}
+
+    
     const expectedPrev =
       i === 0 ? null : steps[i - 1].chain.step_hash;
 
